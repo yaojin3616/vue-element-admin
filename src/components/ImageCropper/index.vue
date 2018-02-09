@@ -105,7 +105,7 @@
 <script>
     /* eslint-disable */
     import {effectRipple, data2blob} from './utils';
-    import fetch from 'utils/fetch';
+    import request from '@/utils/request';
     import langBag from './lang';
     const mimes = {
         'jpg': 'image/jpeg',
@@ -328,6 +328,7 @@
             // 关闭控件
             off() {
                 this.show = false;
+                this.$emit('close');
             },
             // 设置步骤
             setStep(step) {
@@ -671,7 +672,7 @@
             that.loading = 1;
             that.setStep(3);
             that.$emit('crop-success', createImgUrl, field, ki);
-            fetch({
+            request({
                 url,
                 method: 'post',
                 data: fmData
